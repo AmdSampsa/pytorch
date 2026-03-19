@@ -17,8 +17,6 @@ flaky_models = {
     "mobilenetv3_large_100",
     # https://github.com/pytorch/pytorch/issues/163670
     "vision_maskrcnn",
-    # boolean mask outputs are non-deterministic due to thresholding
-    "sam",
 }
 
 
@@ -45,6 +43,9 @@ def check_accuracy(actual_csv, expected_csv, expected_filename):
                 "vgg16",
                 "BERT_pytorch",
                 "tts_angular",  # RuntimeError: Cannot access data pointer of Tensor
+                # Discovered on gfx950 CI after ROCm 7.2 upgrade, eager mode non determinism
+                "alexnet",
+                "demucs",
             }
         )
 
